@@ -9,9 +9,7 @@ export default async function handler(req, res) {
     try {
       const telegramResponse = await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           chat_id: chatId,
           text: message,
@@ -29,7 +27,8 @@ export default async function handler(req, res) {
       console.error("Ошибка при отправке команды:", error);
       res.status(500).json({ error: 'Ошибка при отправке команды в Telegram' });
     }
+
   } else {
-    res.status(405).json({ error: 'Метод не поддерживается' });
+    res.status(405).json({ error: 'Метод не разрешён' });
   }
 }
